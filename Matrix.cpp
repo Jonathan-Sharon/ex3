@@ -275,3 +275,21 @@ Matrix Matrix::rotate() const
 
   return result;
 }
+
+void Matrix::toFile(const std::string &outputFile){
+
+  string content;
+
+  for(uint32_t i=0; i < this -> getHeight(); ++i){
+
+    for(uint32_t j=0; j < this -> getWidth() - 1; ++j){
+
+      content.append(to_string(this -> getValue(i,j)) + ", ");
+    }
+
+    content.append(to_string(this -> getValue(i, this -> getWidth() -1)) + "\n");
+
+  }  
+
+  writeFileContent(outputFile, content);  
+}

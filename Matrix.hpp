@@ -171,6 +171,8 @@ public:
  */
   Matrix rotate() const;
 
+  void toFile(const std::string &outputFile);
+
 private:
   /**
    * @brief resets the matrix in order to be used again in the move contructor.
