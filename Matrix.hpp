@@ -2,6 +2,8 @@
 
 #include "Matrix.h"
 #include <cstdint>
+#include <string>
+
 using namespace std;
 class Matrix
 {
@@ -15,6 +17,8 @@ public:
    * @param width     get thr Matrix's width
    */
   Matrix(std::uint32_t height, std::uint32_t width);
+
+  Matrix(const std::string &filePath);
 
   /**
    * @brief Construct a new Matrix object. Copy Constructor.

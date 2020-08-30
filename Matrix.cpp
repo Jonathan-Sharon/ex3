@@ -5,6 +5,11 @@
 #include "Matrix.hpp"
 #include <cstdint>
 #include <utility>
+#include <string>
+#include <fstream>
+#include "file_reading.hpp"
+#include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -22,6 +27,44 @@ Matrix::Matrix(std::uint32_t height, std::uint32_t width)
 
   // assign
   this->m_matrix = *pmatrix;
+}
+
+
+Matrix::Matrix(const string &filePath){
+
+  string fileContent = readFileContent(filePath);
+  std::uint32_t height = count(fileContent.begin(), fileContent.end(), '\n')+1;
+  std::uint32_t width = count(fileContent.begin(), fileContent.end(), ',') / height + 1;
+  
+  // create
+  auto pmatrix = new PMatrix;
+  auto code = matrix_create(pmatrix, height, width);
+
+  // If, for some reason, an error occured, throw an exception
+  if (!error_isSuccess(code))
+  {
+    throw MatrixErrorCode(code);
+  }
+
+  // assign
+  this->m_matrix = *pmatrix;
+
+  string::size_type sz = 0;
+  
+  for(uint32_t i=0; i<height; ++i){
+
+    for(uint32_t j=0; j<width; ++j){
+
+      string::size_type temp;
+      while(!isdigit(fileContent[sz])){
+
+        sz ++;
+      }
+      matrix_setValue(*pmatrix , i, j, stod(fileContent.substr(sz), &temp));
+
+      sz += temp;     
+    }
+  }
 }
 
 Matrix::Matrix(const Matrix &other)
