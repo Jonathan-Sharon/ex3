@@ -38,10 +38,11 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
     auto operationInfo = operation.getInfo();
     size_t found = m_fileContent.find(operationInfo);
 
-    if(found != string::npos){
+    if (found != string::npos)
+    {
 
         auto info = m_fileContent.substr(found, m_fileContent.find("\n", found) - found);
-        
+
         takeTheLineValues(info);
 
         //Copy the file to our needed output file
@@ -49,7 +50,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
         //delete the line
         //(afterwards we will create a newer line)
-        m_fileContent.replace(found, info.length()+1, "");
+        m_fileContent.replace(found, info.length() + 1, "");
 
         //Create a new row at the end of the file
         m_fileContent.append(info + "\n");
@@ -58,7 +59,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
     }
 
     //If we got here, we could not take the operation from the cache
-    
+
     //calculating the operation
     auto result = operation.operate();
 
@@ -69,8 +70,8 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
         //delete the first line
         size_t zeroRowEnds = m_fileContent.find("\n");
         size_t firstRowEnds = m_fileContent.find("\n", zeroRowEnds + 1);
-        size_t firstCharInFileName = m_fileContent.find_last_of(' ', firstRowEnds)+1;
-        
+        size_t firstCharInFileName = m_fileContent.find_last_of(' ', firstRowEnds) + 1;
+
         remove(m_fileContent.substr(firstCharInFileName, firstRowEnds - firstCharInFileName));
         m_fileContent.replace(zeroRowEnds, firstRowEnds - zeroRowEnds, "");
 
@@ -79,14 +80,14 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
     }
 
     ++m_sizeOfCache;
-    
+
     auto newFile = "cache/" + regex_replace(operationInfo, basic_regex(" "), "_");
     writeFileContent(newFile, result);
     writeFileContent(outputFile, result);
 
     //Create a new row at the end of the file
     m_fileContent.append(operationInfo + " " + newFile + "\n");
-    
+
     //change the size of the cache in the string (m_fileContent)
     m_fileContent.replace(0, m_fileContent.find("\n"), std::to_string(m_sizeOfCache));
 
@@ -100,11 +101,16 @@ void CacheManagement::clear()
 {
     m_fileContent.clear();
     writeFileContent(m_filePath, m_fileContent);
+
+    //deletes all files in the cache, and delets the cache directory
+    remove_all("cache");
+    create_directories("cache");
 }
 
 void CacheManagement::search(CacheOperation &operation) const
 {
-    if(m_fileContent.find(operation.getInfo()) != string::npos){
+    if (m_fileContent.find(operation.getInfo()) != string::npos)
+    {
 
         std::cout << "result found in cache" << std::endl;
         return;
@@ -112,4 +118,3 @@ void CacheManagement::search(CacheOperation &operation) const
 
     std::cout << "The result was not found in cache" << std::endl;
 }
-
