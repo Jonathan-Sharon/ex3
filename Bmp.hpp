@@ -1,7 +1,6 @@
 #include <string>
 #include "Matrix.hpp"
 #pragma pack(push, 1)
-
 struct Header
 {
   char magic[2];
@@ -35,6 +34,8 @@ struct ColorPalette
 };
 
 #pragma pack(pop)
+
+#pragma once
 class Bmp
 {
 public:

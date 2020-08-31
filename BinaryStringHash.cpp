@@ -12,7 +12,7 @@
 
     std::string BinaryStringHash::operate(){
 
-        unsigned char cstr[m_str.size() + 1];
+        unsigned char* cstr =  new unsigned char[m_str.size() + 1];
 	    strcpy((char *)cstr, m_str.c_str());
         std::uint32_t hash = calculate_crc32c(0, cstr, m_str.length());
 

@@ -289,4 +289,6 @@ string Matrix::toString(){
 
     content.append(to_string(this -> getValue(i, this -> getWidth() -1)) + "\n");
   }
+
+  return content;
 }

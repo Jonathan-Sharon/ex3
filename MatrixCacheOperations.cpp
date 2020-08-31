@@ -22,7 +22,7 @@ MatrixAddition::MatrixAddition(const std::string &matrix1, const std::string &ma
 
 std::string MatrixAddition::operate() const{
 
-    (m_matrix1 + m_matrix2).toString();
+    return (m_matrix1 + m_matrix2).toString();
 }
 
 std::string MatrixAddition::getInfo() const{
@@ -50,7 +50,7 @@ MatrixMultipication::MatrixMultipication(const std::string &matrix1, const std::
 
 std::string MatrixMultipication::operate() const{
 
-    (m_matrix1 * m_matrix2).toString();
+    return (m_matrix1 * m_matrix2).toString();
 }
 
 std::string MatrixMultipication::getInfo() const{

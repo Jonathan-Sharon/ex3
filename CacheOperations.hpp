@@ -10,6 +10,7 @@ public:
 
     virtual std::string getInfo() = 0;
     virtual std::string operate() = 0;
+    virtual ~CacheOperation() = 0;
 };
 
 class MatrixAddition : public CacheOperation
