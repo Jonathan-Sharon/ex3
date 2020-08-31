@@ -276,7 +276,7 @@ Matrix Matrix::rotate() const
   return result;
 }
 
-void Matrix::toFile(const std::string &outputFile){
+string Matrix::toString(){
 
   string content;
 
@@ -288,8 +288,5 @@ void Matrix::toFile(const std::string &outputFile){
     }
 
     content.append(to_string(this -> getValue(i, this -> getWidth() -1)) + "\n");
-
-  }  
-
-  writeFileContent(outputFile, content);  
+  }
 }

@@ -171,7 +171,7 @@ public:
  */
   Matrix rotate() const;
 
-  void toFile(const std::string &outputFile);
+  std::string toString();
 
 private:
   /**

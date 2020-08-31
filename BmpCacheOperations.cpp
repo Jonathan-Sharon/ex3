@@ -4,16 +4,16 @@
 
 BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_bmp(imagePath){}
 
-void BmpConvertToGrayScale::operate(const std::string &outputFile){
+std::string BmpConvertToGrayScale::operate(){
     
     m_bmp.convertToGrayScale();
-    writeFileContent(outputFile, m_bmp.bmpWrite());
+    return m_bmp.bmpWrite();
 }
 
 BmpRotate::BmpRotate(const std::string &imagePath) : m_bmp(imagePath){}
 
-void BmpRotate::operate(const std::string &outputFile){
+std::string BmpRotate::operate(){
     
     m_bmp.rotate();
-    writeFileContent(outputFile, m_bmp.bmpWrite());
+    return m_bmp.bmpWrite();
 }
