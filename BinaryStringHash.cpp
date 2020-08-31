@@ -9,8 +9,8 @@
         m_str = readFileContent(filePath);
         m_filePath = filePath;
     }
-    
-    std::string BinaryStringHash::operate(){
+
+    std::string BinaryStringHash::operate() const{
 
         unsigned char cstr[m_str.size() + 1];
 	    strcpy((char *)cstr, m_str.c_str());
@@ -19,7 +19,7 @@
         return to_string(hash);
     }
 
-    std::string BinaryStringHash::getInfo(){
+    std::string BinaryStringHash::getInfo() const{
 
         return "hash crc32 " + m_filePath;
     }
