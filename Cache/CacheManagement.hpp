@@ -7,11 +7,38 @@ public:
     CacheManagement();
     void operate(int argc, const char **const argv);
     void clear();
-    int search(const std::string &) const;
+
+    /**
+     * @brief the function gets a string, and checks if it's in m_fileContent.
+     * If it isn't then it return false. If it is, then it prints the appropriate message
+     * and return true
+     * 
+     * @return true if the string appears in m_fileContent
+     * @return false if it does not
+     */
+    bool search(const std::string &) const;
 
 private:
-    void deleteLine(int n);
-    void createTheLine(int);
+    /**
+ * @brief gets a string, and delets the line in which equals to that string.
+ * 
+ */
+    void deleteLine(const std::string &);
+
+    /**
+     * @brief get a string, and get her values into m_argc and m_argv
+     * 
+     */
+    void takeTheLineValues(const std::string &);
+
+    /**
+     * @brief check if the operation is valid
+     * 
+     * @param argc number of words
+     * @param argv the input
+     * @return true if the operatino is valid
+     * @return false if it isn't
+     */
     bool operationIsValid(int argc, const char **const argv) const;
 
     const std::string m_filePath = "cache.txt";

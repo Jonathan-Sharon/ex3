@@ -91,23 +91,24 @@ void CacheManagement::operate(int argc, const char **const argv)
         }
     }
 
-    //The operation is nor related to cache, so call the factor
+    //The operation is not related to cache, so call the factory
     //in order to create operation
 
     //Call the factory to create a ChaceOperation
     CacheOperate object = factory(argc, argv);
     auto info = std::make_unique<std::string>(object.getInfo());
 
-    //get the line number with the get info in it
-    int lineNumber = search(*info);
-
-    //If lineNumber != 0 then we have already done that operation,
+    //If info already exists on the cache then we have already done that operation,
     //so just take it from the output file
-    if (lineNumber != 0)
+    if (search(*info))
     {
         //give value for the m_line and m_argc,
-        //Which contains information about the row we found
-        createTheLine(lineNumber);
+        //Which contains information about the row we found.
+
+        //So, because we found there is a string which represents our operation
+        //In the cache, then we go to that specific line, and upload her values
+        //into our class members
+        takeTheLineValues(*info);
 
         //get the time in which the operation took place
         time_t OutputFileCreated = (time_t)(atol(m_line[m_argc - 1]));
@@ -127,7 +128,7 @@ void CacheManagement::operate(int argc, const char **const argv)
 
             //delete the line
             //(afterwards we will create a newer line)
-            deleteLine(lineNumber);
+            deleteLine(*info);
 
             //Create a new row at the end of the file
             m_fileContent.append(*info + "\n");
@@ -145,7 +146,12 @@ void CacheManagement::operate(int argc, const char **const argv)
     //which is in the first line
     if (m_sizeOfCache >= CACHE_MAX_SIZE)
     {
-        deleteLine(1);
+        //delete the first line
+        size_t zeroRowEnds = m_fileContent.find("\n");
+        size_t firstRowEnds = m_fileContent.find("\n", zeroRowEnds + 1);
+        m_fileContent.replace(zeroRowEnds, firstRowEnds - zeroRowEnds, "");
+
+        //update the size of cache
         --m_sizeOfCache;
     }
 
@@ -168,42 +174,10 @@ void CacheManagement::clear()
     writeFileContent(m_filePath, m_fileContent);
 }
 
-int CacheManagement::search(const std::string &) const
+bool CacheManagement::search(const std::string &information) const
 {
 }
 
-void deleteLine(const char *file_name, int n)
+void deleteLine(const std::string &information)
 {
-    // open file in read mode or in mode
-    std::ifstream is(file_name);
-
-    // open file in write mode or out mode
-    std::ofstream ofs;
-    ofs.open("temp.txt", std::ofstream::out);
-
-    // loop getting single characters
-    char c;
-    int line_no = 1;
-    while (is.get(c))
-    {
-        // if a newline character
-        if (c == '\n')
-            line_no++;
-
-        // file content not to be deleted
-        if (line_no != n)
-            ofs << c;
-    }
-
-    // closing output file
-    ofs.close();
-
-    // closing input file
-    is.close();
-
-    // remove the original file
-    remove(file_name);
-
-    // rename the file
-    rename("temp.txt", file_name);
 }
