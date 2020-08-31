@@ -3,5 +3,5 @@
 
 namespace Factory
 {
-    CacheOperation *factory(const int argc, const char **argv);
+    CacheOperation &factory(const int argc, const char **argv);
 }

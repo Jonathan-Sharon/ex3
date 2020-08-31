@@ -4,7 +4,7 @@
 #include "../CacheOperations.hpp"
 namespace Factory
 {
-    CacheOperation &factory(const int argc, const char **argv)
+    std::unique_ptr<CacheOperation> factory(const int argc, const char **argv)
     {
         if (argc < 3)
         {
@@ -15,12 +15,12 @@ namespace Factory
         {
             if (argv[1] == "add" && argc >= 5)
             {
-                return MatrixAddition(readFileContent(argv[2]), readFileContent(argv[3]));
+                return std::make_unique<MatrixAddition>(argv[2], argv[3]);
             }
 
             if (argv[1] == "multiply" && argc >= 5)
             {
-                return MatrixMultipication(readFileContent(argv[2]), readFileContent(argv[3]));
+                return std::make_unique<MatrixMultipication>(argv[2], argv[3]);
             }
 
             throw std::runtime_error("Unvalid input!");
@@ -30,12 +30,12 @@ namespace Factory
         {
             if (argv[1] == "rotate" && argc >= 4)
             {
-                return BmpRotate(argv[2]);
+                return std::make_unique<BmpRotate>(argv[2]);
             }
 
             if (argv[1] == "convert" && argc >= 4)
             {
-                return BmpConvertToGrayScale(argv[2]);
+                return std::make_unique<BmpConvertToGrayScale>(argv[2]);
             }
 
             throw std::runtime_error("Unvalid input!");
@@ -45,7 +45,7 @@ namespace Factory
         {
             if (argv[1] == "crc32" && argc >= 4)
             {
-                return BinaryStringHash(argv[2]);
+                return std::make_unique<BinaryStringHash>(argv[2]);
             }
 
             throw std::runtime_error("Unvalid input!");
