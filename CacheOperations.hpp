@@ -8,7 +8,7 @@ class CacheOperation
 public:
 
     virtual std::string getInfo() = 0;
-    virtual std::string operate(const std::string &outputFile) = 0;
+    virtual void operate(const std::string &outputFile) = 0;
 };
 
 class MatrixAddition : public CacheOperation
@@ -17,7 +17,7 @@ public:
 
     MatrixAddition(const std::string &matrix1, const std::string &matrix2);
     virtual std::string getInfo();
-    virtual std::string operate(const std::string &outputFile);
+    virtual void operate(const std::string &outputFile);
 
 private:
     
@@ -31,7 +31,7 @@ public:
 
     MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
     virtual std::string getInfo();
-    virtual std::string operate(const std::string &outputFile);
+    virtual void operate(const std::string &outputFile);
 
 private:
     
@@ -45,7 +45,7 @@ public:
 
     BmpConvertToGrayScale(const std::string &imagePath);
     virtual std::string getInfo();
-    virtual std::string operate(const std::string &outputFile);
+    virtual void operate(const std::string &outputFile);
 
 private:
     
@@ -58,7 +58,7 @@ public:
 
     BmpRotate(const std::string &imagePath);
     virtual std::string getInfo();
-    virtual std::string operate(const std::string &outputFile);
+    virtual void operate(const std::string &outputFile);
 
 private:
     
