@@ -5,16 +5,16 @@ class CacheManagement
 {
 public:
     CacheManagement();
-    void operate(const std::string &);
+    void operate(int argc, const char **const argv);
     void clear();
-    int search(std::string &);
+    int search(std::string &) const;
 
 private:
-    const std::string searchOutputFileName(int);
-    const std::time_t searchTimeStamp(int);
     void deleteLine(const char *file_name, int n);
+    void createTheLine(int);
 
+    std::string m_fileContent;
     char **m_line;
     int m_argc;
-    const std::string fileName = "cache.txt";
+    const std::string m_fileName = "cache.txt";
 };
