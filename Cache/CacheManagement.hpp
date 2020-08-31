@@ -17,7 +17,7 @@ public:
      * @return true if the string appears in m_fileContent
      * @return false if it does not
      */
-    bool search(const CacheOperation &operation, bool print) const;
+    void search(CacheOperation &operation) const;
 
 private:
     /**
