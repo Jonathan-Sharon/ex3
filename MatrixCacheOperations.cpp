@@ -3,12 +3,12 @@
 
 MatrixAddition::MatrixAddition(const std::string &matrix1, const std::string &matrix2) : m_matrix1(matrix1), m_matrix2(matrix2){}
 
-std::string MatrixAddition::operate(){
+std::string MatrixAddition::operate() const{
 
     (m_matrix1 + m_matrix2).toString();
 }
 
-std::string MatrixAddition::getInfo(){
+std::string MatrixAddition::getInfo() const{
 
     return "matrix add " + to_string(m_matrix1Hash) + " " + to_string(m_matrix2Hash);
 }
@@ -16,7 +16,7 @@ std::string MatrixAddition::getInfo(){
 
 MatrixMultipication::MatrixMultipication(const std::string &matrix1, const std::string &matrix2) : m_matrix1(matrix1), m_matrix2(matrix2){}
 
-std::string MatrixMultipication::operate(){
+std::string MatrixMultipication::operate() const{
 
     (m_matrix1 * m_matrix2).toString();
 }

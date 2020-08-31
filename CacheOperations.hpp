@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include "Matrix.hpp"
 #include "Bmp.hpp"
@@ -8,7 +9,7 @@ class CacheOperation
 public:
 
     virtual std::string getInfo() = 0;
-    virtual std::string  operate() = 0;
+    virtual std::string operate() = 0;
 };
 
 class MatrixAddition : public CacheOperation
@@ -16,8 +17,8 @@ class MatrixAddition : public CacheOperation
 public:
 
     MatrixAddition(const std::string &matrix1, const std::string &matrix2);
-    virtual std::string getInfo();
-    virtual std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate() const;
 
 private:
     
@@ -32,8 +33,8 @@ class MatrixMultipication : public CacheOperation
 public:
 
     MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
-    virtual std::string getInfo();
-    virtual std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate() const;
 
 private:
     
@@ -76,8 +77,8 @@ class BinaryStringHash : public CacheOperation
 public:
 
     BinaryStringHash(const std::string &filePath);
-    virtual std::string getInfo();
-    virtual std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate() const;
 
 private:
 
