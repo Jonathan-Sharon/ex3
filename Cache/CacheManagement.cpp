@@ -118,3 +118,20 @@ void CacheManagement::search(CacheOperation &operation) const
 
     std::cout << "The result was not found in cache" << std::endl;
 }
+
+void CacheManagement::takeTheLineValues(const std::string &str){
+
+    m_argc = 0;
+    char* str1;
+    strcpy(str1 ,str.c_str());
+
+    char *token = strtok(str1, " ");
+    while (token != NULL) 
+    { 
+        m_line[m_argc] = token;
+        token = strtok(NULL, " ");
+
+        ++m_argc; 
+    } 
+    
+}
