@@ -52,3 +52,8 @@ std::string MatrixMultipication::operate() const{
 
     (m_matrix1 * m_matrix2).toString();
 }
+
+std::string MatrixMultipication::getInfo() const{
+
+    return "matrix multiply " + to_string(m_matrix1Hash) + " " + to_string(m_matrix2Hash);
+}

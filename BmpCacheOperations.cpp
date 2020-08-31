@@ -14,11 +14,17 @@ BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_b
     remove("cache/tmp");
 }
 
+std::string BmpConvertToGrayScale::getInfo(){
+
+    return "image convert " + m_bmpHash;
+}
+
 std::string BmpConvertToGrayScale::operate(){
     
     m_bmp.convertToGrayScale();
     return m_bmp.bmpWrite();
 }
+
 
 BmpRotate::BmpRotate(const std::string &imagePath) : m_bmp(imagePath){
 
@@ -35,4 +41,9 @@ std::string BmpRotate::operate(){
     
     m_bmp.rotate();
     return m_bmp.bmpWrite();
+}
+
+std::string BmpRotate::getInfo(){
+
+    return "image rotate " + m_bmpHash;
 }
