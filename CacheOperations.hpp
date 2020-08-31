@@ -77,8 +77,8 @@ class BinaryStringHash : public CacheOperation
 public:
 
     BinaryStringHash(const std::string &filePath);
-    virtual std::string getInfo() const;
-    virtual std::string operate() const;
+    virtual std::string getInfo();
+    virtual std::string operate();
 
 private:
 
