@@ -14,5 +14,7 @@ private:
     const std::time_t searchTimeStamp(int);
     void deleteLine(const char *file_name, int n);
 
-    std::string m_file;
+    char **m_line;
+    int m_argc;
+    const std::string fileName = "cache.txt";
 };
