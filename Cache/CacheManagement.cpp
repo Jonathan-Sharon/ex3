@@ -2,6 +2,9 @@
 #include "FileReading.hpp"
 #include <time.h>
 #include <bits/stdc++.h>
+#include "../CacheOperations.hpp"
+//#include <clock>
+
 //#include <filesystem>
 
 #define CACHE_MAX_SIZE 10
@@ -110,6 +113,7 @@ void CacheManagement::operate(int argc, const char **const argv)
         //into our class members
         takeTheLineValues(*info);
 
+/**
         //get the time in which the operation took place
         time_t OutputFileCreated = (time_t)(atol(m_line[m_argc - 1]));
 
@@ -123,18 +127,19 @@ void CacheManagement::operate(int argc, const char **const argv)
         //So, we already have a file with the result we want.
         if (OutputFileCreated >= lastWriteTime - 1)
         {
-            //Copy the file to our needed output file
-            copy_file(m_line[m_argc - 2], argv[argc - 1]);
+**/            //Copy the file to our needed output file
+            
+        copy_file(m_line[m_argc - 2], argv[argc - 1]);
 
-            //delete the line
-            //(afterwards we will create a newer line)
-            deleteLine(*info);
+        //delete the line
+        //(afterwards we will create a newer line)
+        deleteLine(*info);
 
-            //Create a new row at the end of the file
-            m_fileContent.append(*info + "\n");
-            writeFileContent(m_filePath, m_fileContent);
-            return;
-        }
+        //Create a new row at the end of the file
+        m_fileContent.append(*info + "\n");
+        writeFileContent(m_filePath, m_fileContent);
+        return;
+        
     }
 
     //If we got here, we could not take the operation from the cache

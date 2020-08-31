@@ -1,11 +1,12 @@
 #pragma once
 #include <string>
+#include "../CacheOperations.hpp"
 
 class CacheManagement
 {
 public:
     CacheManagement();
-    void operate(int argc, const char **const argv);
+    void operate(CacheOperation &operation, const std::string &outputFile);
     void clear();
 
     /**
@@ -16,7 +17,7 @@ public:
      * @return true if the string appears in m_fileContent
      * @return false if it does not
      */
-    bool search(const std::string &) const;
+    bool search(const CacheOperation &operation, bool print) const;
 
 private:
     /**
