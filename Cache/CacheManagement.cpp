@@ -8,11 +8,11 @@
 
 //#include <clock>
 
-//#include <filesystem>
+#include <experimental/filesystem>
 
 #define CACHE_MAX_SIZE 10
 
-using namespace std::filesystem;
+using namespace std::experimental::filesystem;
 
 CacheManagement::CacheManagement()
 {
@@ -81,7 +81,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
     ++m_sizeOfCache;
 
-    auto newFile = "cache/" + regex_replace(operationInfo, basic_regex(" "), "_");
+    auto newFile = "cache/" + std::regex_replace(operationInfo, basic_regex<char>(" "), "_");
     writeFileContent(newFile, result);
     writeFileContent(outputFile, result);
 
@@ -122,10 +122,12 @@ void CacheManagement::search(CacheOperation &operation) const
 void CacheManagement::takeTheLineValues(const std::string &str){
 
     m_argc = 0;
-    char* str1;
-    strcpy(str1 ,str.c_str());
+    
+    std::unique_ptr<char[]> charArray(new char[str.length() +1]);
+    
+    strcpy(charArray.get(), str.c_str());
 
-    char *token = strtok(str1, " ");
+    char *token = strtok(charArray.get(), " ");
     while (token != NULL) 
     { 
         m_line[m_argc] = token;

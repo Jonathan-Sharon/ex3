@@ -18,8 +18,8 @@ class MatrixAddition : public CacheOperation
 public:
 
     MatrixAddition(const std::string &matrix1, const std::string &matrix2);
-    virtual std::string getInfo() const;
-    virtual std::string operate() const;
+    virtual std::string getInfo();
+    virtual std::string operate();
 
 private:
     
@@ -34,8 +34,8 @@ class MatrixMultipication : public CacheOperation
 public:
 
     MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
-    virtual std::string getInfo() const;
-    virtual std::string operate() const;
+    virtual std::string getInfo();
+    virtual std::string operate();
 
 private:
     

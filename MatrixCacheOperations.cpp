@@ -20,12 +20,12 @@ MatrixAddition::MatrixAddition(const std::string &matrix1, const std::string &ma
     remove("cache/tmp");
 }
 
-std::string MatrixAddition::operate() const{
+std::string MatrixAddition::operate(){
 
     return (m_matrix1 + m_matrix2).toString();
 }
 
-std::string MatrixAddition::getInfo() const{
+std::string MatrixAddition::getInfo(){
 
     return "matrix add " + to_string(m_matrix1Hash) + " " + to_string(m_matrix2Hash);
 }
@@ -48,12 +48,12 @@ MatrixMultipication::MatrixMultipication(const std::string &matrix1, const std::
     remove("cache/tmp");
 }
 
-std::string MatrixMultipication::operate() const{
+std::string MatrixMultipication::operate(){
 
     return (m_matrix1 * m_matrix2).toString();
 }
 
-std::string MatrixMultipication::getInfo() const{
+std::string MatrixMultipication::getInfo(){
 
     return "matrix multiply " + to_string(m_matrix1Hash) + " " + to_string(m_matrix2Hash);
 }
