@@ -5,19 +5,20 @@
 
 MatrixAddition::MatrixAddition(const std::string &matrix1, const std::string &matrix2) : m_matrix1(matrix1), m_matrix2(matrix2){
 
-    CacheManagement cacheManager;
+    CacheManagement cacheManager1;
 
     BinaryStringHash matrix1HashOperation(matrix1);
     BinaryStringHash matrix2HashOperation(matrix2);
     
-    cacheManager.operate(matrix1HashOperation, "cache/tmp");
+    cacheManager1.operate(matrix1HashOperation, "cache/tmp.txt");
+    m_matrix1Hash = stoi(readFileContent("cache/tmp.txt"));
 
-    m_matrix1Hash = stoi(readFileContent("cache/tmp"));
-    cacheManager.operate(matrix2HashOperation, "cache/tmp");
+    CacheManagement cacheManager2;
 
-    m_matrix2Hash = stoi(readFileContent("cache/tmp"));
+    cacheManager2.operate(matrix2HashOperation, "cache/tmp.txt");
+    m_matrix2Hash = stoi(readFileContent("cache/tmp.txt"));
 
-    remove("cache/tmp");
+    remove("cache/tmp.txt");
 }
 
 std::string MatrixAddition::operate(){
@@ -33,16 +34,17 @@ std::string MatrixAddition::getInfo(){
 
 MatrixMultipication::MatrixMultipication(const std::string &matrix1, const std::string &matrix2) : m_matrix1(matrix1), m_matrix2(matrix2){
 
-    CacheManagement cacheManager;
+    CacheManagement cacheManager1;
 
     BinaryStringHash matrix1HashOperation(matrix1);
     BinaryStringHash matrix2HashOperation(matrix2);
     
-    cacheManager.operate(matrix1HashOperation, "cache/tmp");
-
+    cacheManager1.operate(matrix1HashOperation, "cache/tmp");
     m_matrix1Hash = stoi(readFileContent("cache/tmp"));
-    cacheManager.operate(matrix2HashOperation, "cache/tmp");
 
+    CacheManagement cacheManager2;
+    
+    cacheManager2.operate(matrix2HashOperation, "cache/tmp");
     m_matrix2Hash = stoi(readFileContent("cache/tmp"));
 
     remove("cache/tmp");

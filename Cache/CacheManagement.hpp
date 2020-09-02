@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "../CacheOperations.hpp"
+#include <vector>
 
 class CacheManagement
 {
@@ -44,7 +45,7 @@ private:
 
     const std::string m_filePath = "cache.txt";
     std::string m_fileContent;
-    char **m_line;
-    int m_argc;
+    std::vector<std::string> m_line;
+    size_t m_argc;
     int m_sizeOfCache;
 };
