@@ -2,7 +2,7 @@
 #include "../fileReading/file_reading.hpp"
 #include <time.h>
 #include <bits/stdc++.h>
-#include "../CacheOperations/CacheOperations.hpp"
+#include "../CacheOperations/CacheOperations.h"
 #include <regex>
 #include <iostream>
 #include <vector>
@@ -13,6 +13,7 @@
 #define CACHE_MAX_SIZE 10
 
 using namespace std::filesystem;
+using namespace Operation;
 
 CacheManagement::CacheManagement()
 {

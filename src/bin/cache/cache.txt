@@ -1,0 +1,2 @@
+1
+hash crc32 src/result.txt src/bin/cache/hash_crc32_src_result_txt.txt

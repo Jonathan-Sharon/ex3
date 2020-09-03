@@ -1,4 +1,4 @@
-#include "CacheOperations.hpp"
+#include "CacheOperations.h"
 
 #include "../Hash/crc32.c"
 #include "../fileReading/file_reading.hpp"
@@ -13,7 +13,7 @@ using namespace Operation;
      m_str(readFileContent(filePath)), m_filePath(filePath) {}
 
 
-    std::string BinaryStringHash::operate(){
+    const std::string BinaryStringHash::operate(){
 
         auto cstr = std::make_unique<unsigned char[]>(m_str.size() + 1);
         strcpy(reinterpret_cast<char*>(cstr.get()), m_str.c_str());
@@ -25,7 +25,7 @@ using namespace Operation;
         return to_string(hash);
     }
 
-    std::string BinaryStringHash::getInfo(){
+    const std::string BinaryStringHash::getInfo(){
 
         return "hash crc32 " + m_filePath;
     }

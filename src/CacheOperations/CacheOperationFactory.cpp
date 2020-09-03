@@ -1,14 +1,15 @@
-#include "CacheOperationFactory.hpp"
+#include "CacheOperationFactory.h"
+
 #include <stdexcept>
-#include "../fileReading/file_reading.hpp"
-#include "../CacheOperations/CacheOperations.hpp"
 #include <memory>
 #include <string.h>
 #include <iostream>
 
+using namespace Operation;
+
 namespace CacheOperationFactory
 {
-    std::unique_ptr<CacheOperation> CacheOperationFactory(const int argc, const char **argv)
+    std::unique_ptr<CacheOperation> CacheOperationFactory(int argc, const char **argv)
     {
         if (argc < 4)
         {

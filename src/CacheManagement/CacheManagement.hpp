@@ -1,13 +1,13 @@
 #pragma once
 #include <string>
-#include "../CacheOperations/CacheOperations.hpp"
+#include "../CacheOperations/CacheOperations.h"
 #include <vector>
 
 class CacheManagement
 {
 public:
     CacheManagement();
-    void operate(CacheOperation &operation, const std::string &outputFile);
+    void operate(Operation::CacheOperation &operation, const std::string &outputFile);
     void clear();
 
     /**
@@ -18,7 +18,7 @@ public:
      * @return true if the string appears in m_fileContent
      * @return false if it does not
      */
-    void search(CacheOperation &operation) const;
+    void search(Operation::CacheOperation &operation) const;
 
 private:
     /**

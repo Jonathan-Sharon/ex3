@@ -1,9 +1,19 @@
-#include <string.h>
 #include "CacheManagement/CacheManagement.hpp"
-#include "CacheOperations/CacheOperations.hpp"
-#include "CacheOperations/CacheOperationFactory.hpp"
+#include "CacheOperations/CacheOperations.h"
+#include "CacheOperations/CacheOperationFactory.h"
+
+#include <string.h>
+#include <filesystem>
+#include <iostream>
+
+using namespace Operation;
+using namespace std::filesystem;
+
 int main(int argc, char const *argv[]){
 
+
+    //If there are not enough arguments then return
+    //the appropriate error
     if(argc < 3) {
         throw runtime_error("too little arguments");
     }
@@ -26,7 +36,7 @@ int main(int argc, char const *argv[]){
         }
     }
 
-    std::unique_ptr<CacheOperation> cacheOperation = CacheOperationFactory::CacheOperationFactory(argc, argv);
+    auto cacheOperation = CacheOperationFactory::CacheOperationFactory(argc, argv);
     CacheManagement cacheManager; 
     cacheManager.operate(*cacheOperation, argv[argc-1]);
 
