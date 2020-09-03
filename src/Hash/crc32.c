@@ -43,7 +43,7 @@
  */
 
 #include <sys/cdefs.h>
-
+#include <stdint.h>
 #include <sys/param.h>
 
 
@@ -203,7 +203,7 @@ static const uint32_t crc32Table[256] = {
 static uint32_t
 singletable_crc32c(uint32_t crc, void *buf, size_t size)
 {
-	const uint8_t *p = reinterpret_cast<uint8_t *>(buf);
+	const uint8_t *p = (uint8_t *)(buf);
 
 
 	while (size--)

@@ -1,7 +1,7 @@
 #include "CacheOperations.hpp"
-#include "Bmp.hpp"
-#include "file_reading.hpp"
-#include "Cache/CacheManagement.hpp"
+#include "../Bmp/Bmp.hpp"
+#include "../fileReading/file_reading.hpp"
+#include "../CacheManagement/CacheManagement.hpp"
 
 BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_bmp(imagePath){
 

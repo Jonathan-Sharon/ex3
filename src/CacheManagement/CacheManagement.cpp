@@ -1,20 +1,18 @@
 #include "CacheManagement.hpp"
-#include "FileReading.hpp"
+#include "../fileReading/file_reading.hpp"
 #include <time.h>
 #include <bits/stdc++.h>
-#include "../CacheOperations.hpp"
+#include "../CacheOperations/CacheOperations.hpp"
 #include <regex>
 #include <iostream>
 #include <vector>
 
-//#include <clock>
 
-//#include <experimental/filesystem>
 
-#include <filesystem>
+#include <experimental/filesystem>
 #define CACHE_MAX_SIZE 10
 
-using namespace std::filesystem;
+using namespace std::experimental::filesystem;
 
 CacheManagement::CacheManagement()
 {

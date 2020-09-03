@@ -1,8 +1,7 @@
 #include <string.h>
-#include "Cache/CacheManagement.hpp"
-#include "CacheOperations.hpp"
-#include "Cache/CacheOperationFactory.hpp"
-
+#include "CacheManagement/CacheManagement.hpp"
+#include "CacheOperations/CacheOperations.hpp"
+#include "CacheOperations/CacheOperationFactory.hpp"
 int main(int argc, char const *argv[]){
 
     if(strcmp(argv[1], "cache") == 0){

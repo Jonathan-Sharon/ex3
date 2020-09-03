@@ -1,6 +1,6 @@
 #include "CacheOperations.hpp"
-#include "crc32.c"
-#include "file_reading.hpp"
+#include "../Hash/crc32.c"
+#include "../fileReading/file_reading.hpp"
 #include <string>
 #include <cstring>
 

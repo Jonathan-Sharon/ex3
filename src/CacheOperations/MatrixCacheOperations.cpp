@@ -1,7 +1,7 @@
 #include "CacheOperations.hpp"
-#include "Matrix.hpp"
-#include "Cache/CacheManagement.hpp"
-#include "file_reading.hpp"
+#include "../Matrix/Matrix.hpp"
+#include "../CacheManagement/CacheManagement.hpp"
+#include "../fileReading/file_reading.hpp"
 
 MatrixAddition::MatrixAddition(const std::string &matrix1, const std::string &matrix2) : m_matrix1(matrix1), m_matrix2(matrix2){
 

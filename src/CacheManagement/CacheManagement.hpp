@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "../CacheOperations.hpp"
+#include "../CacheOperations/CacheOperations.hpp"
 #include <vector>
 
 class CacheManagement

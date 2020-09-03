@@ -1,5 +1,5 @@
 #include "Bmp.hpp"
-#include "file_reading.hpp"
+#include "../fileReading/file_reading.hpp"
 #include <string>
 #include <sys/stat.h>
 #include <math.h>

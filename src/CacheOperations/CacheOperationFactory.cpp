@@ -1,7 +1,7 @@
 #include "CacheOperationFactory.hpp"
 #include <stdexcept>
-#include "FileReading.hpp"
-#include "../CacheOperations.hpp"
+#include "../fileReading/file_reading.hpp"
+#include "../CacheOperations/CacheOperations.hpp"
 #include <memory>
 #include <string.h>
 #include <iostream>

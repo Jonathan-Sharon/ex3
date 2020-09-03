@@ -1,6 +1,6 @@
 #include "bmp_tester.hpp"
 #include "Bmp.hpp"
-#include "file_reading.hpp"
+#include "../fileReading/file_reading.hpp"
 #include <string>
 
 namespace testing
