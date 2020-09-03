@@ -1,38 +1,17 @@
-#cmake_minimum_required(VERSION 3.0.0)
-#project(ex2 VERSION 0.1.0)
-
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-#if(MSVC)
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
-#endif(MSVC)
-
-#add_compile_options(-Wall -Wextra -pedantic -Werror -Wnon-virtual-dtor -Wshadow)
-
-#file(GLOB src "*.cpp")
-#set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-#include_directories(${CMAKE_SOURCE_DIR})
-#include_directories(${CMAKE_SOURCE_DIR}/Cache)
-#link_directories(${CMAKE_SOURCE_DIR})
-#link_directories(${CMAKE_SOURCE_DIR}/Cache)
-#add_executable(ex3.out ${src} CacheManagement/CacheManagement.cpp CacheManagement/CacheOperationFactory.cpp)
-#target_link_libraries(ex3.out matrix)
-
-#set(CPACK_PROJECT_NAME ${PROJECT_NAME})
-#set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-#include(CPack)
-##
-
 cmake_minimum_required(VERSION 3.0.0)
-project(ex3 VERSION 0.1.0)
+project(ex2 VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 17)
-add_compile_options(-Wall -Wextra -pedantic -Werror -Wnon-virtual-dtor -Wshadow)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/Bin)
+if(MSVC)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /std:c++17")
+endif(MSVC)
+
+add_compile_options(-Wall -Wextra -pedantic -Werror -Wshadow)
+
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 # add the .cpp files of the project
 add_executable(ex3.out
@@ -64,7 +43,7 @@ target_include_directories(ex3.out PUBLIC
                             )
 
 # make the cache directory
-file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/Bin/Cache)
+file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/bin/cache)
 
 # include the src directory
 target_link_directories(ex3.out PUBLIC ${PROJECT_SOURCE_DIR})

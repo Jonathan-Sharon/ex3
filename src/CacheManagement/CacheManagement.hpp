@@ -43,7 +43,7 @@ private:
      */
     bool operationIsValid(int argc, const char **const argv) const;
 
-    const std::string m_filePath = "cache.txt";
+    const std::string m_filePath = "src/bin/cache/cache.txt";
     std::string m_fileContent;
     std::vector<std::string> m_line;
     size_t m_argc;

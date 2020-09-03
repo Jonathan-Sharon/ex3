@@ -4,6 +4,10 @@
 #include "CacheOperations/CacheOperationFactory.hpp"
 int main(int argc, char const *argv[]){
 
+    if(argc < 3) {
+        throw runtime_error("too little arguments");
+    }
+
     if(strcmp(argv[1], "cache") == 0){
 
         if(strcmp(argv[2], "search") == 0){

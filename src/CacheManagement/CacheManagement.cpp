@@ -9,13 +9,18 @@
 
 
 
-#include <experimental/filesystem>
+#include <filesystem>
 #define CACHE_MAX_SIZE 10
 
-using namespace std::experimental::filesystem;
+using namespace std::filesystem;
 
 CacheManagement::CacheManagement()
 {
+    if(!exists("./src/bin/cache")){
+
+        create_directory("./src/bin/cache");
+    }
+
     if(!exists(m_filePath)){
 
         writeFileContent(m_filePath, "");
@@ -86,12 +91,9 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
     ++m_sizeOfCache;
 
-    if(!exists("./cache")){
 
-        create_directory("./cache");
-    }
 
-    auto newFile = "./cache/" + std::regex_replace(operationInfo, basic_regex<char>("[ ./]"), "_") + ".txt";
+    auto newFile = "src/bin/cache/" + std::regex_replace(operationInfo, basic_regex<char>("[ ./]"), "_") + ".txt";
     writeFileContent(newFile, result);
     writeFileContent(outputFile, result);
 
@@ -113,8 +115,8 @@ void CacheManagement::clear()
     writeFileContent(m_filePath, m_fileContent);
 
     //deletes all files in the cache, and delets the cache directory
-    remove_all("cache");
-    create_directories("cache");
+    remove_all("./src/bin/cache");
+    create_directories("./src/bin/cache");
 }
 
 void CacheManagement::search(CacheOperation &operation) const
