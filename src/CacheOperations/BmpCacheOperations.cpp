@@ -1,5 +1,5 @@
-#include "../fileReading/file_reading.hpp"
-#include "../CacheManagement/CacheManagement.hpp"
+#include "../fileReading/file_reading.h"
+#include "../CacheManagement/CacheManagement.h"
 
 using namespace Operation;
 

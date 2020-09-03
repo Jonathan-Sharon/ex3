@@ -1,5 +1,5 @@
-#include "CacheManagement.hpp"
-#include "../fileReading/file_reading.hpp"
+#include "CacheManagement.h"
+#include "../fileReading/file_reading.h"
 #include "../CacheOperations/CacheOperations.h"
 
 #include <time.h>
@@ -8,13 +8,14 @@
 #include <iostream>
 #include <vector>
 #include <filesystem>
+#include <chrono>
 
 #define CACHE_MAX_SIZE 10
 
 using namespace std::filesystem;
 using namespace Operation;
 
-CacheManagement::CacheManagement() : m_argc(0), m_line(), m_filePath("src/bin/cache/cache.txt")
+CacheManagement::CacheManagement() : m_filePath("src/bin/cache/cache.txt"), m_line(), m_argc(0)
 {
     if(!exists("./src/bin/cache")){
 
@@ -39,7 +40,7 @@ CacheManagement::CacheManagement() : m_argc(0), m_line(), m_filePath("src/bin/ca
     else
     {
         std::string firstLine = m_fileContent.substr(0, m_fileContent.find("\n"));
-        m_sizeOfCache = stoi(firstLine);
+        m_sizeOfCache = stoul(firstLine);
     }
 }
 
@@ -54,6 +55,14 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
         auto info = m_fileContent.substr(found, m_fileContent.find("\n", found) - found);
 
         takeTheLineValues(info);
+
+        //if(strcmp(m_line[0].c_str(), "hash") == 0) {
+                //path p = current_path() / m_line[2];
+                //auto ftime = last_write_time(p);
+ 
+                // assuming system_clock for this demo
+                // note: not true on MSVC or GCC 9; C++20 will allow portable output
+        //}
 
         //Copy the file to our needed output file
         copy_file(m_line[m_argc - 1], outputFile, copy_options::overwrite_existing);
@@ -98,7 +107,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
     writeFileContent(outputFile, result);
 
     //Create a new row at the end of the file
-    m_fileContent.append(operationInfo + " " + newFile + "\n");
+    m_fileContent.append(operationInfo + " " + std::to_string(std::time(nullptr)) + " " + newFile + "\n");
 
     //change the size of the cache in the string (m_fileContent)
     m_fileContent.replace(0, m_fileContent.find("\n"), std::to_string(m_sizeOfCache));

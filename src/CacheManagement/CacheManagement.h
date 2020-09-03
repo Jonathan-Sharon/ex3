@@ -45,8 +45,8 @@ private:
     bool operationIsValid(int argc, const char **const argv) const;
 
     const std::string m_filePath;
-    std::string m_fileContent;
     std::vector<std::string> m_line;
     size_t m_argc;
+    std::string m_fileContent;
     uint8_t m_sizeOfCache;
 };

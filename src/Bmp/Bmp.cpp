@@ -1,5 +1,7 @@
-#include "Bmp.hpp"
-#include "../fileReading/file_reading.hpp"
+#include "Bmp.h"
+#include "../fileReading/file_reading.h"
+#include "../Matrix/Matrix.hpp"
+
 #include <string>
 #include <sys/stat.h>
 #include <math.h>

@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include "../Matrix/Matrix.h"
-#include "../Bmp/Bmp.hpp"
+#include "../Matrix/Matrix.hpp"
+#include "../Bmp/Bmp.h"
 
 namespace Operation {
 class CacheOperation

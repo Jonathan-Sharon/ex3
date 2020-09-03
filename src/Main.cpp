@@ -1,4 +1,4 @@
-#include "CacheManagement/CacheManagement.hpp"
+#include "CacheManagement/CacheManagement.h"
 #include "CacheOperations/CacheOperations.h"
 #include "CacheOperations/CacheOperationFactory.h"
 
@@ -15,7 +15,7 @@ int main(int argc, char const *argv[]){
     //If there are not enough arguments then return
     //the appropriate error
     if(argc < 3) {
-        throw runtime_error("too little arguments");
+        throw runtime_error("too little argument");
     }
 
     if(strcmp(argv[1], "cache") == 0){
