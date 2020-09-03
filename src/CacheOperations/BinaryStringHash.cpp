@@ -1,21 +1,27 @@
 #include "CacheOperations.hpp"
+
 #include "../Hash/crc32.c"
 #include "../fileReading/file_reading.hpp"
+
 #include <string>
 #include <cstring>
+#include <memory>
 
-    BinaryStringHash::BinaryStringHash(const std::string &filePath){
+using namespace Operation;
 
-        m_str = readFileContent(filePath);
-        m_filePath = filePath;
-    }
+    BinaryStringHash::BinaryStringHash(const std::string &filePath) :
+     m_str(readFileContent(filePath)), m_filePath(filePath) {}
+
 
     std::string BinaryStringHash::operate(){
 
-        unsigned char* cstr =  new unsigned char[m_str.size() + 1];
-	    strcpy((char *)cstr, m_str.c_str());
-        std::uint32_t hash = calculate_crc32c(0, cstr, m_str.length());
+        auto cstr = std::make_unique<unsigned char[]>(m_str.size() + 1);
+        strcpy(reinterpret_cast<char*>(cstr.get()), m_str.c_str());
 
+        //unsigned char* cstr =  new unsigned char[m_str.size() + 1];
+	    //strcpy((char *)cstr, m_str.c_str());
+        //calculate the hash
+        auto hash = calculate_crc32c(0, cstr.get(), m_str.length());
         return to_string(hash);
     }
 
