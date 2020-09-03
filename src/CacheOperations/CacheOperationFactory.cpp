@@ -11,11 +11,14 @@ namespace CacheOperationFactory
 {
     std::unique_ptr<CacheOperation> CacheOperationFactory(int argc, const char **argv)
     {
+        //Check if the number of arguments is valid
         if (argc < 4)
         {
             throw std::runtime_error("Too little arguments were given");
         }
 
+        //Check what is the first and last word,
+        //And contruct the appropriate Class.
         if (strcmp(argv[1], "matrix") == 0)
         {
             if (strcmp(argv[2], "add") == 0 && argc >= 6)

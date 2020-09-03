@@ -43,15 +43,15 @@ MatrixMultipication::MatrixMultipication(const std::string &matrix1, const std::
     BinaryStringHash matrix1HashOperation(matrix1);
     BinaryStringHash matrix2HashOperation(matrix2);
     
-    cacheManager1.operate(matrix1HashOperation, "cache/tmp");
-    m_matrix1Hash = stoul(readFileContent("cache/tmp"));
+    cacheManager1.operate(matrix1HashOperation, "src/bin/cache/tmp.txt");
+    m_matrix1Hash = stoul(readFileContent("src/bin/cache/tmp.txt"));
 
     CacheManagement::CacheManagement cacheManager2;
     
-    cacheManager2.operate(matrix2HashOperation, "cache/tmp");
-    m_matrix2Hash = stoul(readFileContent("cache/tmp"));
+    cacheManager2.operate(matrix2HashOperation, "src/bin/cache/tmp.txt");
+    m_matrix2Hash = stoul(readFileContent("src/bin/cache/tmp.txt"));
 
-    remove("cache/tmp");
+    remove("src/bin/cache/tmp.txt");
 }
 
 const std::string MatrixMultipication::operate(){

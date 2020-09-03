@@ -8,17 +8,37 @@ namespace Operation {
 class CacheOperation
 {
 public:
-
+    /**
+     * @brief Get info about the operation
+     * 
+     * @return const std::string the info about the operation
+     */
     virtual const std::string getInfo() const = 0;
+
+    /**
+     * @brief the actual operation the object should do
+     * 
+     * @return const std::string which represents the operation
+     */
     virtual const std::string operate() = 0;
+
+    /**
+     * @brief Destroy the Cache Operation object
+     * 
+     */
     virtual ~CacheOperation() { };
 };
 
 class MatrixAddition : public CacheOperation
 {
 public:
-
-    MatrixAddition(const std::string &matrix1, const std::string &matrix2);
+    /**
+     * @brief Construct a new Matrix Addition object
+     * 
+     * @param matrix1 the first matrix
+     * @param matrix2 the second matrix
+     */
+    explicit MatrixAddition(const std::string &matrix1, const std::string &matrix2);
     virtual const std::string getInfo() const;
     virtual const std::string operate();
 
@@ -33,8 +53,13 @@ private:
 class MatrixMultipication : public CacheOperation
 {
 public:
-
-    MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
+    /**
+     * @brief Construct a new Matrix Multipication object
+     * 
+     * @param matrix1 the first Matrix
+     * @param matrix2 the second matrix
+     */
+    explicit MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
     virtual const std::string getInfo() const;
     virtual const std::string operate();
 
@@ -50,7 +75,12 @@ class BmpConvertToGrayScale : public CacheOperation
 {
 public:
 
-    BmpConvertToGrayScale(const std::string &imagePath);
+    /**
+     * @brief Construct a new Bmp Convert To Gray Scale object
+     * 
+     * @param imagePath the path to the image
+     */
+    explicit BmpConvertToGrayScale(const std::string &imagePath);
     virtual const std::string getInfo() const;
     virtual const std::string operate();
 
@@ -64,7 +94,12 @@ class BmpRotate : public CacheOperation
 {
 public:
 
-    BmpRotate(const std::string &imagePath);
+    /**
+     * @brief Construct a new Bmp Rotate object
+     * 
+     * @param imagePath the path to the image
+     */
+    explicit BmpRotate(const std::string &imagePath);
     virtual const std::string getInfo() const;
     virtual const std::string operate();
 
@@ -78,6 +113,11 @@ class BinaryStringHash : public CacheOperation
 {
 public:
 
+    /**
+     * @brief Construct a new Binary String Hash object
+     * 
+     * @param filePath the path to the file to be hashed
+     */
     explicit BinaryStringHash(const std::string &filePath);
     virtual const std::string getInfo() const;
     virtual const std::string operate();

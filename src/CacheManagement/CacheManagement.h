@@ -38,13 +38,13 @@ private:
  * @brief gets a string, and delets the line in which equals to that string.
  * 
  */
-    void deleteLine(const std::string &);
+    void deleteLine(const std::string &string);
 
     /**
      * @brief get a string, and get her values into m_argc and m_argv
      * 
      */
-    void takeTheLineValues(const std::string &);
+    void takeTheLineValues(const std::string &string);
 
     /**
      * @brief check if the operation is valid

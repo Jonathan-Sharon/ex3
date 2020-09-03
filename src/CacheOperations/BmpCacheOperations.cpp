@@ -8,20 +8,21 @@ BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_b
 
     CacheManagement::CacheManagement cacheManager;
     BinaryStringHash HashOperation(imagePath);
-    
+
+    //calculate the hash of the image
     cacheManager.operate(HashOperation, "src/bin/cache/tmp.txt");
-    m_bmpHash = stoi(readFileContent("src/bin/cache/tmp.txt"));
+    m_bmpHash = stoul(readFileContent("src/bin/cache/tmp.txt"));
 
     remove("src/bin/cache/tmp.txt");
 }
 
 const std::string BmpConvertToGrayScale::getInfo() const{
 
-    return "image convert " + m_bmpHash;
+    return "image convert " + to_string(m_bmpHash);
 }
 
 const std::string BmpConvertToGrayScale::operate(){
-    
+    //Do the operation
     m_bmp.convertToGrayScale();
     return m_bmp.bmpWrite();
 }
@@ -32,19 +33,20 @@ BmpRotate::BmpRotate(const std::string &imagePath) : m_bmp(imagePath){
     CacheManagement::CacheManagement cacheManager;
     BinaryStringHash HashOperation(imagePath);
     
-    cacheManager.operate(HashOperation, "src/bin/cache/tmp");
-    m_bmpHash = stoi(readFileContent("src/bin/cache/tmp"));
+    //get the hash og the image
+    cacheManager.operate(HashOperation, "src/bin/cache/tmp.txt");
+    m_bmpHash = stoul(readFileContent("src/bin/cache/tmp.txt"));
 
-    remove("src/bin/cache/tmp");
+    remove("src/bin/cache/tmp.txt");
 }
 
 const std::string BmpRotate::operate(){
-    
+    //do the operation
     m_bmp.rotate();
     return m_bmp.bmpWrite();
 }
 
 const std::string BmpRotate::getInfo() const{
-
-    return "image rotate " + m_bmpHash;
+    //get the info about the operation
+    return "image rotate " + to_string(m_bmpHash);
 }
