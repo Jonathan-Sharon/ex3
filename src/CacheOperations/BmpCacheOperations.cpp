@@ -2,10 +2,11 @@
 #include "../CacheManagement/CacheManagement.h"
 
 using namespace Operation;
+using namespace CacheManagement;
 
 BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_bmp(imagePath){
 
-    CacheManagement cacheManager;
+    CacheManagement::CacheManagement cacheManager;
     BinaryStringHash HashOperation(imagePath);
     
     cacheManager.operate(HashOperation, "src/bin/cache/tmp.txt");
@@ -14,7 +15,7 @@ BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_b
     remove("src/bin/cache/tmp.txt");
 }
 
-const std::string BmpConvertToGrayScale::getInfo(){
+const std::string BmpConvertToGrayScale::getInfo() const{
 
     return "image convert " + m_bmpHash;
 }
@@ -28,7 +29,7 @@ const std::string BmpConvertToGrayScale::operate(){
 
 BmpRotate::BmpRotate(const std::string &imagePath) : m_bmp(imagePath){
 
-    CacheManagement cacheManager;
+    CacheManagement::CacheManagement cacheManager;
     BinaryStringHash HashOperation(imagePath);
     
     cacheManager.operate(HashOperation, "src/bin/cache/tmp");
@@ -43,7 +44,7 @@ const std::string BmpRotate::operate(){
     return m_bmp.bmpWrite();
 }
 
-const std::string BmpRotate::getInfo(){
+const std::string BmpRotate::getInfo() const{
 
     return "image rotate " + m_bmpHash;
 }

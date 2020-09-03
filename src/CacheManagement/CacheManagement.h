@@ -3,11 +3,23 @@
 
 #include <string>
 #include <vector>
-
+namespace CacheManagement {
 class CacheManagement
 {
 public:
+    /**
+    * @brief Construct a new Cache Management object
+    * 
+    */
     CacheManagement();
+
+    /**
+     * @brief the method finds out if an operation already happened before.
+     * If it did, then take the reuslt. Else, put the result in the cache
+     * 
+     * @param operation the operation find out if had happened
+     * @param outputFile the output file to write to
+     */
     void operate(Operation::CacheOperation &operation, const std::string &outputFile);
     void clear();
 
@@ -19,7 +31,7 @@ public:
      * @return true if the string appears in m_fileContent
      * @return false if it does not
      */
-    void search(Operation::CacheOperation &operation) const;
+    void search(const Operation::CacheOperation &operation) const;
 
 private:
     /**
@@ -50,3 +62,4 @@ private:
     std::string m_fileContent;
     uint8_t m_sizeOfCache;
 };
+} //namespace Cache Management

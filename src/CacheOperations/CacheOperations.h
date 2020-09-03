@@ -9,7 +9,7 @@ class CacheOperation
 {
 public:
 
-    virtual const std::string getInfo() = 0;
+    virtual const std::string getInfo() const = 0;
     virtual const std::string operate() = 0;
     virtual ~CacheOperation() { };
 };
@@ -19,7 +19,7 @@ class MatrixAddition : public CacheOperation
 public:
 
     MatrixAddition(const std::string &matrix1, const std::string &matrix2);
-    virtual const std::string getInfo();
+    virtual const std::string getInfo() const;
     virtual const std::string operate();
 
 private:
@@ -35,7 +35,7 @@ class MatrixMultipication : public CacheOperation
 public:
 
     MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
-    virtual const std::string getInfo();
+    virtual const std::string getInfo() const;
     virtual const std::string operate();
 
 private:
@@ -51,7 +51,7 @@ class BmpConvertToGrayScale : public CacheOperation
 public:
 
     BmpConvertToGrayScale(const std::string &imagePath);
-    virtual const std::string getInfo();
+    virtual const std::string getInfo() const;
     virtual const std::string operate();
 
 private:
@@ -65,7 +65,7 @@ class BmpRotate : public CacheOperation
 public:
 
     BmpRotate(const std::string &imagePath);
-    virtual const std::string getInfo();
+    virtual const std::string getInfo() const;
     virtual const std::string operate();
 
 private:
@@ -79,7 +79,7 @@ class BinaryStringHash : public CacheOperation
 public:
 
     explicit BinaryStringHash(const std::string &filePath);
-    virtual const std::string getInfo();
+    virtual const std::string getInfo() const;
     virtual const std::string operate();
 
 private:

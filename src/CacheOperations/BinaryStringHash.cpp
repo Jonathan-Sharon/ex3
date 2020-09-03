@@ -25,7 +25,7 @@ using namespace Operation;
         return to_string(hash);
     }
 
-    const std::string BinaryStringHash::getInfo(){
+    const std::string BinaryStringHash::getInfo() const{
 
         return "hash crc32 " + m_filePath;
     }

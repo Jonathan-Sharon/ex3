@@ -1,4 +1,5 @@
 #include "CacheManagement.h"
+
 #include "../fileReading/file_reading.h"
 #include "../CacheOperations/CacheOperations.h"
 
@@ -8,12 +9,12 @@
 #include <iostream>
 #include <vector>
 #include <filesystem>
-#include <chrono>
 
 #define CACHE_MAX_SIZE 10
 
 using namespace std::filesystem;
 using namespace Operation;
+namespace CacheManagement {
 
 CacheManagement::CacheManagement() : m_filePath("src/bin/cache/cache.txt"), m_line(), m_argc(0)
 {
@@ -55,14 +56,6 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
         auto info = m_fileContent.substr(found, m_fileContent.find("\n", found) - found);
 
         takeTheLineValues(info);
-
-        //if(strcmp(m_line[0].c_str(), "hash") == 0) {
-                //path p = current_path() / m_line[2];
-                //auto ftime = last_write_time(p);
- 
-                // assuming system_clock for this demo
-                // note: not true on MSVC or GCC 9; C++20 will allow portable output
-        //}
 
         //Copy the file to our needed output file
         copy_file(m_line[m_argc - 1], outputFile, copy_options::overwrite_existing);
@@ -130,7 +123,7 @@ void CacheManagement::clear()
     create_directories("./src/bin/cache");
 }
 
-void CacheManagement::search(CacheOperation &operation) const
+void CacheManagement::search(const CacheOperation &operation) const
 {
     //If the args were found in the cache
     //then print the appropriate massege.
@@ -159,4 +152,5 @@ void CacheManagement::takeTheLineValues(const std::string &str){
         token = strtok(NULL, " ");
         ++m_argc;
     }
+}
 }

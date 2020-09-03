@@ -24,20 +24,20 @@ int main(int argc, char const *argv[]){
 
             std::unique_ptr<CacheOperation> cacheOperation = CacheOperationFactory::CacheOperationFactory(argc - 1, &argv[2]);
             
-            CacheManagement cacheManager; 
+            CacheManagement::CacheManagement cacheManager; 
             cacheManager.search(*cacheOperation);
             return 0;
         }
         if(strcmp(argv[2], "clear") == 0){
 
-            CacheManagement cacheManager; 
+            CacheManagement::CacheManagement cacheManager; 
             cacheManager.clear();
             return 0;
         }
     }
 
     auto cacheOperation = CacheOperationFactory::CacheOperationFactory(argc, argv);
-    CacheManagement cacheManager; 
+    CacheManagement::CacheManagement cacheManager; 
     cacheManager.operate(*cacheOperation, argv[argc-1]);
 
     return 0;
