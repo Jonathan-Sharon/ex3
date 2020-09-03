@@ -1,21 +1,20 @@
 #include "CacheManagement.hpp"
 #include "../fileReading/file_reading.hpp"
+#include "../CacheOperations/CacheOperations.h"
+
 #include <time.h>
 #include <bits/stdc++.h>
-#include "../CacheOperations/CacheOperations.h"
 #include <regex>
 #include <iostream>
 #include <vector>
-
-
-
 #include <filesystem>
+
 #define CACHE_MAX_SIZE 10
 
 using namespace std::filesystem;
 using namespace Operation;
 
-CacheManagement::CacheManagement()
+CacheManagement::CacheManagement() : m_argc(0), m_line(), m_filePath("src/bin/cache/cache.txt")
 {
     if(!exists("./src/bin/cache")){
 
@@ -112,6 +111,8 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
 void CacheManagement::clear()
 {
+    //deletes the cache.txt which has the information about
+    //operations we have done.
     m_fileContent.clear();
     writeFileContent(m_filePath, m_fileContent);
 
@@ -122,9 +123,10 @@ void CacheManagement::clear()
 
 void CacheManagement::search(CacheOperation &operation) const
 {
+    //If the args were found in the cache
+    //then print the appropriate massege.
     if (m_fileContent.find(operation.getInfo()) != string::npos)
     {
-
         std::cout << "result found in cache" << std::endl;
         return;
     }
@@ -133,19 +135,19 @@ void CacheManagement::search(CacheOperation &operation) const
 }
 
 void CacheManagement::takeTheLineValues(const std::string &str){
-
-    m_argc = 0;
     
     std::unique_ptr<char[]> charArray(new char[str.length() +1]);
     
     strcpy(charArray.get(), str.c_str());
 
-    char *token = strtok(charArray.get(), " ");
+    //cuts the line into words,
+    //and put them in argv.
+    //Update argc accordingly 
+    char *token(strtok(charArray.get(), " "));
     while (token != NULL) 
     { 
         m_line.push_back(token);
         token = strtok(NULL, " ");
-        ++m_argc; 
-    } 
-    
+        ++m_argc;
+    }
 }

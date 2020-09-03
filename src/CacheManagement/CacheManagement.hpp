@@ -1,6 +1,7 @@
 #pragma once
-#include <string>
 #include "../CacheOperations/CacheOperations.h"
+
+#include <string>
 #include <vector>
 
 class CacheManagement
@@ -43,9 +44,9 @@ private:
      */
     bool operationIsValid(int argc, const char **const argv) const;
 
-    const std::string m_filePath = "src/bin/cache/cache.txt";
+    const std::string m_filePath;
     std::string m_fileContent;
     std::vector<std::string> m_line;
     size_t m_argc;
-    int m_sizeOfCache;
+    uint8_t m_sizeOfCache;
 };
