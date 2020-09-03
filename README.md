@@ -44,6 +44,7 @@ the CacheManager contains the following methods:
 #### SOLID
 
 The program meets the SOLID conditions.
+
 ***S*** - every module, class or function in a our program has single responsibility over a single part of that program's functionality - The Factpry is in charge of creating the object, the CacheManager is in charge of managing the cache, and the CacheOperations defines the action.
 
 ***O*** - Also, if we'd like to add more functions, the current code won't have to be modified. If we'd like to add another function, all we'd need to is to add a new class which inherents CacheOperation.
