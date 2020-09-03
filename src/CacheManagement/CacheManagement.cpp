@@ -18,10 +18,6 @@ namespace CacheManagement {
 
 CacheManagement::CacheManagement() : m_filePath("src/bin/cache/cache.txt"), m_line(), m_argc(0)
 {
-    if(!exists("./src/bin/cache")){
-
-        create_directory("./src/bin/cache");
-    }
 
     if(!exists(m_filePath)){
 
@@ -66,6 +62,13 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
         //Create a new row at the end of the file
         m_fileContent.append(info + "\n");
+
+        //If the last word is stdout,
+        //print the result on the screen
+        if(outputFile == "stdout") {
+            std::cout << m_fileContent << std::endl;
+            return;
+        }
         writeFileContent(m_filePath, m_fileContent);
         return;
     }
@@ -95,9 +98,14 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
 
 
-    auto newFile = "src/bin/cache/" + std::regex_replace(operationInfo, basic_regex<char>("[ ./]"), "_") + ".txt";
+    auto newFile =  "src/bin/cache/" + std::regex_replace(operationInfo, basic_regex<char>("[ ./]"), "_") + ".txt";
     writeFileContent(newFile, result);
+
+    if(outputFile == "stdout") {
+        std::cout << result << std::endl;
+    } else {
     writeFileContent(outputFile, result);
+    }
 
     //Create a new row at the end of the file
     m_fileContent.append(operationInfo + " " + std::to_string(std::time(nullptr)) + " " + newFile + "\n");
@@ -119,8 +127,8 @@ void CacheManagement::clear()
     writeFileContent(m_filePath, m_fileContent);
 
     //deletes all files in the cache, and delets the cache directory
-    remove_all("./src/bin/cache");
-    create_directories("./src/bin/cache");
+    remove_all("src/bin/cache");
+    create_directories("src/bin/cache");
 }
 
 void CacheManagement::search(const CacheOperation &operation) const
