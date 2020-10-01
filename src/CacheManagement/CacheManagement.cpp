@@ -1,7 +1,7 @@
 #include "CacheManagement.h"
 
-#include "../fileReading/file_reading.h"
-#include "../CacheOperations/CacheOperations.h"
+#include "fileReading/file_reading.h"
+#include "CacheOperations/CacheOperations.h"
 
 #include <time.h>
 #include <bits/stdc++.h>
@@ -11,20 +11,22 @@
 #include <filesystem>
 
 #define CACHE_MAX_SIZE 10
+#define CACHE_LOCATION "src/bin/cache/"
+#define FILE_PATH "src/bin/cache/cache.txt"
 
-using namespace std::filesystem;
 using namespace Operation;
+
 namespace CacheManagement {
 
-CacheManagement::CacheManagement() : m_filePath("src/bin/cache/cache.txt"), m_line(), m_argc(0)
+CacheManagement::CacheManagement() : m_line(), m_argc(0)
 {
 
-    if(!exists(m_filePath)){
+    if(!std::filesystem::exists(FILE_PATH)){
 
-        writeFileContent(m_filePath, "");
+        writeFileContent(FILE_PATH, "");
     }
 
-    m_fileContent = readFileContent(m_filePath);
+    m_fileContent = readFileContent(FILE_PATH);
 
     //The first line will contain the size of
     //the cache. If the file is empty then the size of the
@@ -43,8 +45,7 @@ CacheManagement::CacheManagement() : m_filePath("src/bin/cache/cache.txt"), m_li
 
 void CacheManagement::operate(CacheOperation &operation, const std::string &outputFile)
 {
-    auto operationInfo = operation.getInfo();
-    size_t found = m_fileContent.find(operationInfo);
+    size_t found = m_fileContent.find(operation.getInfo());
 
     if (found != string::npos)
     {
@@ -54,7 +55,8 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
         takeTheLineValues(info);
 
         //Copy the file to our needed output file
-        copy_file(m_line[m_argc - 1], outputFile, copy_options::overwrite_existing);
+        std::filesystem::copy_file(m_line[m_argc - 1], outputFile, 
+                                std::filesystem::copy_options::overwrite_existing);
 
         //delete the line
         //(afterwards we will create a newer line)
@@ -69,7 +71,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
             std::cout << m_fileContent << std::endl;
             return;
         }
-        writeFileContent(m_filePath, m_fileContent);
+        writeFileContent(FILE_PATH, m_fileContent);
         return;
     }
 
@@ -87,7 +89,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
         size_t firstRowEnds = m_fileContent.find("\n", zeroRowEnds + 1);
         size_t firstCharInFileName = m_fileContent.find_last_of(' ', firstRowEnds) + 1;
 
-        remove(m_fileContent.substr(firstCharInFileName, firstRowEnds - firstCharInFileName));
+        std::filesystem::remove(m_fileContent.substr(firstCharInFileName, firstRowEnds - firstCharInFileName));
         m_fileContent.replace(zeroRowEnds, firstRowEnds - zeroRowEnds, "");
 
         //update the size of cache
@@ -98,7 +100,7 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
 
 
 
-    auto newFile =  "src/bin/cache/" + std::regex_replace(operationInfo, basic_regex<char>("[ ./]"), "_") + ".txt";
+    auto newFile =  CACHE_LOCATION + std::regex_replace(operation.getInfo(), basic_regex<char>("[ ./]"), "_") + ".txt";
     writeFileContent(newFile, result);
 
     if(outputFile == "stdout") {
@@ -108,15 +110,13 @@ void CacheManagement::operate(CacheOperation &operation, const std::string &outp
     }
 
     //Create a new row at the end of the file
-    m_fileContent.append(operationInfo + " " + std::to_string(std::time(nullptr)) + " " + newFile + "\n");
+    m_fileContent.append(operation.getInfo() + " " + std::to_string(std::time(nullptr)) + " " + newFile + "\n");
 
     //change the size of the cache in the string (m_fileContent)
     m_fileContent.replace(0, m_fileContent.find("\n"), std::to_string(m_sizeOfCache));
 
     //write m_fileContent to our file
-    writeFileContent(m_filePath, m_fileContent);
-
-    return;
+    writeFileContent(FILE_PATH, m_fileContent);
 }
 
 void CacheManagement::clear()
@@ -124,11 +124,11 @@ void CacheManagement::clear()
     //deletes the cache.txt which has the information about
     //operations we have done.
     m_fileContent.clear();
-    writeFileContent(m_filePath, m_fileContent);
+    writeFileContent(FILE_PATH, m_fileContent);
 
     //deletes all files in the cache, and delets the cache directory
-    remove_all("src/bin/cache");
-    create_directories("src/bin/cache");
+    std::filesystem::remove_all("src/bin/cache");
+    std::filesystem::create_directories("src/bin/cache");
 }
 
 void CacheManagement::search(const CacheOperation &operation) const
@@ -148,7 +148,7 @@ void CacheManagement::takeTheLineValues(const std::string &str){
     
     std::unique_ptr<char[]> charArray(new char[str.length() +1]);
     
-    strcpy(charArray.get(), str.c_str());
+    str.copy(charArray.get(), str.length(), 0);
 
     //cuts the line into words,
     //and put them in argv.

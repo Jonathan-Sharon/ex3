@@ -11,8 +11,6 @@
 #include <algorithm>
 #include <iostream>
 
-using namespace std;
-
 Matrix::Matrix(std::uint32_t height, std::uint32_t width)
 {
   // create

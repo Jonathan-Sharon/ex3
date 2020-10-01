@@ -16,12 +16,12 @@ BmpConvertToGrayScale::BmpConvertToGrayScale(const std::string &imagePath) : m_b
     remove("src/bin/cache/tmp.txt");
 }
 
-const std::string BmpConvertToGrayScale::getInfo() const{
+std::string BmpConvertToGrayScale::getInfo() const{
 
     return "image convert " + to_string(m_bmpHash);
 }
 
-const std::string BmpConvertToGrayScale::operate(){
+std::string BmpConvertToGrayScale::operate(){
     //Do the operation
     m_bmp.convertToGrayScale();
     return m_bmp.bmpWrite();
@@ -40,13 +40,13 @@ BmpRotate::BmpRotate(const std::string &imagePath) : m_bmp(imagePath){
     remove("src/bin/cache/tmp.txt");
 }
 
-const std::string BmpRotate::operate(){
+std::string BmpRotate::operate(){
     //do the operation
     m_bmp.rotate();
     return m_bmp.bmpWrite();
 }
 
-const std::string BmpRotate::getInfo() const{
+std::string BmpRotate::getInfo() const{
     //get the info about the operation
     return "image rotate " + to_string(m_bmpHash);
 }

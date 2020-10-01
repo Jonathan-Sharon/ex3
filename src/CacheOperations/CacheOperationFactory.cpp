@@ -31,7 +31,7 @@ namespace CacheOperationFactory
                 return std::make_unique<MatrixMultipication>(argv[3], argv[4]);
             }
 
-            throw std::runtime_error("Unvalid input!");
+            throw std::runtime_error("Invalid input!");
         }
 
         if (strcmp(argv[1], "image") == 0)
@@ -46,7 +46,7 @@ namespace CacheOperationFactory
                 return std::make_unique<BmpConvertToGrayScale>(argv[3]);
             }
 
-            throw std::runtime_error("Unvalid input!");
+            throw std::runtime_error("Invalid input!");
         }
 
         if (strcmp(argv[1], "hash") == 0)
@@ -56,8 +56,8 @@ namespace CacheOperationFactory
                 return std::make_unique<BinaryStringHash>(argv[3]);
             }
 
-            throw std::runtime_error("Unvalid input!");
+            throw std::runtime_error("Invalid input!");
         }
-        throw std::runtime_error("Unvalid input!");
+        throw std::runtime_error("Invalid input!");
     }
 } // namespace CacheOperationFactory

@@ -13,14 +13,14 @@ public:
      * 
      * @return const std::string the info about the operation
      */
-    virtual const std::string getInfo() const = 0;
+    virtual std::string getInfo() const = 0;
 
     /**
      * @brief the actual operation the object should do
      * 
      * @return const std::string which represents the operation
      */
-    virtual const std::string operate() = 0;
+    virtual std::string operate() = 0;
 
     /**
      * @brief Destroy the Cache Operation object
@@ -39,8 +39,8 @@ public:
      * @param matrix2 the second matrix
      */
     explicit MatrixAddition(const std::string &matrix1, const std::string &matrix2);
-    virtual const std::string getInfo() const;
-    virtual const std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate();
 
 private:
     
@@ -60,8 +60,8 @@ public:
      * @param matrix2 the second matrix
      */
     explicit MatrixMultipication(const std::string &matrix1, const std::string &matrix2);
-    virtual const std::string getInfo() const;
-    virtual const std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate();
 
 private:
     
@@ -81,8 +81,8 @@ public:
      * @param imagePath the path to the image
      */
     explicit BmpConvertToGrayScale(const std::string &imagePath);
-    virtual const std::string getInfo() const;
-    virtual const std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate();
 
 private:
     
@@ -100,8 +100,8 @@ public:
      * @param imagePath the path to the image
      */
     explicit BmpRotate(const std::string &imagePath);
-    virtual const std::string getInfo() const;
-    virtual const std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate();
 
 private:
     
@@ -119,8 +119,8 @@ public:
      * @param filePath the path to the file to be hashed
      */
     explicit BinaryStringHash(const std::string &filePath);
-    virtual const std::string getInfo() const;
-    virtual const std::string operate();
+    virtual std::string getInfo() const;
+    virtual std::string operate();
 
 private:
 
